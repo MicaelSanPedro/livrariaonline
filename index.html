@@ -1,1 +1,218 @@
-<!DOCTYPE html><html lang="pt-br"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Livraria Online</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"><style>*{box-sizing:border-box}body{font-family:'Poppins',sans-serif;margin:0;padding:0;background-color:#f3f4f6;color:#333}header,footer{background:linear-gradient(135deg,#2C3E50,#3498db);color:white;text-align:center;padding:2rem;border-bottom:5px solid #1ABC9C}header img{width:100px;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,0.2);transition:transform 0.3s}header img:hover{transform:scale(1.1)}nav{text-align:center;padding:1rem;background:linear-gradient(135deg,#3b4048,#34495E);color:white}nav a{display:inline-block;margin:0 0.5rem;padding:0.8rem 1.5rem;font-size:1rem;border-radius:5px;cursor:pointer;background-color:#1ABC9C;text-decoration:none;transition:background-color 0.3s,transform 0.3s}nav a:hover{background-color:#16a085;transform:translateY(-2px)}.search-bar{text-align:center;padding:1rem}.search-bar input[type="text"]{width:60%;border:2px solid #3b4048;padding:0.5rem;border-radius:5px;box-shadow:0 2px 4px rgba(0,0,0,0.1)}.search-bar input[type="submit"],.buy-btn{border:none;background-color:#1ABC9C;color:white;padding:0.5rem 1rem;border-radius:5px;cursor:pointer;transition:background-color 0.3s}.search-bar input[type="submit"]:hover,.buy-btn:hover{background-color:#16a085}.section{background:#fff;padding:2rem;border-radius:10px;margin:2rem auto;box-shadow:0 4px 8px rgba(0,0,0,0.2)}.content{display:none;padding:2rem;transition:opacity 0.3s}.active{display:block;opacity:1}.price{font-weight:bold;color:#E74C3C}@media(max-width:600px){.section{width:90%}.search-bar input[type="text"]{width:80%}nav a{display:block;margin:0.5rem 0}}</style><script>function toggleSection(id){document.querySelectorAll('.content').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active')}function searchBooks(){const q=document.getElementById('search-input').value.toLowerCase();document.querySelectorAll('.content').forEach(s=>{let r=false;s.querySelectorAll('.book').forEach(b=>{const m=b.textContent.toLowerCase().includes(q);b.style.display=m?'block':'none';r=r||m});s.style.display=r?'block':'none'});document.getElementById('start').style.display=q?'none':'block'}</script></head><body onload="toggleSection('start')"><header><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzQHCPsaJ6DGM-G77QTvXyk2O9CdB-Z9nd0A&s" alt="Logo da Livraria Online" loading="lazy"><h1>Livraria Online</h1></header><nav><a href="javascript:void(0)" onclick="toggleSection('start')">Início</a><a href="javascript:void(0)" onclick="toggleSection('adult')">Livros para Adultos</a><a href="javascript:void(0)" onclick="toggleSection('kids')">Histórias para Crianças</a></nav><div class="search-bar"><input type="text" id="search-input" placeholder="Pesquisar livros..." onkeyup="searchBooks()"><input type="submit" value="Pesquisar" onclick="searchBooks()"></div><div class="content active" id="start"><h2>Bem-vindo à Livraria Online</h2><p>Aqui você encontra uma vasta coleção de livros para adultos e histórias encantadoras para crianças.</p></div><div class="content" id="adult"><div class="section"><h2>Livros para Adultos</h2><div class="book"><h3>A História de Jó</h3><p>Uma narrativa sobre fé e perseverança diante das dificuldades.</p><p class="price">Preço: R$ 4,99</p><a href="https://wa.me/5566981021166?text=Olá%20Micael,%20gostaria%20de%20comprar%20o%20livro%20A%20História%20de%20Jó!" target="_blank"><button class="buy-btn">Comprar</button></a></div></div></div><div class="content" id="kids"><div class="section"><h2>Histórias para Crianças</h2><div class="book"><h3>Davi e Golias</h3><p>Uma história clássica de coragem e superação.</p><p class="price">Preço: R$ 4,99</p><a href="https://wa.me/5566981021166?text=Olá%20Micael,%20gostaria%20de%20comprar%20o%20livro%20de%20Davi%20e%20Golias!" target="_blank"><button class="buy-btn">Comprar</button></a></div></div></div><footer><p>&copy; 2024 Livraria Online. Todos os direitos reservados.</p></footer></body></html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livraria Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Estilo básico para todos os elementos */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Estilo do corpo da página */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+            color: #333;
+        }
+
+        /* Estilo do cabeçalho e rodapé */
+        header, footer {
+            background: linear-gradient(135deg, #2C3E50, #3498db);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            border-bottom: 5px solid #1ABC9C;
+        }
+
+        /* Estilo do logo no cabeçalho */
+        header img {
+            width: 100px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        /* Efeito de hover no logo */
+        header img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Estilo do menu de navegação */
+        nav {
+            text-align: center;
+            padding: 1rem;
+            background: linear-gradient(135deg, #3b4048, #34495E);
+            color: white;
+        }
+
+        /* Estilo dos links do menu */
+        nav a {
+            display: inline-block;
+            margin: 0 0.5rem;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #1ABC9C;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        /* Efeito de hover nos links do menu */
+        nav a:hover {
+            background-color: #16a085;
+            transform: translateY(-2px);
+        }
+
+        /* Estilo da barra de pesquisa */
+        .search-bar {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* Estilo do input de pesquisa */
+        .search-bar input[type="text"] {
+            width: 60%;
+            border: 2px solid #3b4048;
+            padding: 0.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilo do botão de pesquisa e compra */
+        .search-bar input[type="submit"],
+        .buy-btn {
+            border: none;
+            background-color: #1ABC9C;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        /* Efeito de hover no botão de pesquisa e compra */
+        .search-bar input[type="submit"]:hover,
+        .buy-btn:hover {
+            background-color: #16a085;
+        }
+
+        /* Estilo das seções de conteúdo */
+        .section {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Estilo do conteúdo oculto */
+        .content {
+            display: none;
+            padding: 2rem;
+            transition: opacity 0.3s;
+        }
+
+        /* Estilo da seção ativa */
+        .active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Estilo para o preço dos livros */
+        .price {
+            font-weight: bold;
+            color: #E74C3C;
+        }
+
+        /* Responsividade para dispositivos menores */
+        @media(max-width: 600px) {
+            .section {
+                width: 90%;
+            }
+            .search-bar input[type="text"] {
+                width: 80%;
+            }
+            nav a {
+                display: block;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+    <script>
+        // Função para alternar as seções de conteúdo
+        function toggleSection(id) {
+            document.querySelectorAll('.content').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        // Função para pesquisar livros
+        function searchBooks() {
+            const q = document.getElementById('search-input').value.toLowerCase();
+            document.querySelectorAll('.content').forEach(s => {
+                let r = false;
+                s.querySelectorAll('.book').forEach(b => {
+                    const m = b.textContent.toLowerCase().includes(q);
+                    b.style.display = m ? 'block' : 'none';
+                    r = r || m;
+                });
+                s.style.display = r ? 'block' : 'none';
+            });
+            document.getElementById('start').style.display = q ? 'none' : 'block';
+        }
+    </script>
+</head>
+<body onload="toggleSection('start')">
+    <header>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzQHCPsaJ6DGM-G77QTvXyk2O9CdB-Z9nd0A&s" alt="Logo da Livraria Online" loading="lazy">
+        <h1>Livraria Online</h1>
+    </header>
+    <nav>
+        <a href="javascript:void(0)" onclick="toggleSection('start')">Início</a>
+        <a href="javascript:void(0)" onclick="toggleSection('adult')">Livros para Adultos</a>
+        <a href="javascript:void(0)" onclick="toggleSection('kids')">Histórias para Crianças</a>
+    </nav>
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Pesquisar livros..." onkeyup="searchBooks()">
+        <input type="submit" value="Pesquisar" onclick="searchBooks()">
+    </div>
+    <div class="content active" id="start">
+        <h2>Bem-vindo à Livraria Online</h2>
+        <p>Aqui você encontra uma vasta coleção de livros para adultos e histórias encantadoras para crianças.</p>
+    </div>
+    <div class="content" id="adult">
+        <div class="section">
+            <h2>Livros para Adultos</h2>
+            <div class="book">
+                <h3>A História de Jó</h3>
+                <p>Uma narrativa sobre fé e perseverança diante das dificuldades.</p>
+                <p class="price">Preço: R$ 4,99</p>
+                <a href="https://wa.me/5566981021166?text=Olá%20Micael,%20gostaria%20de%20comprar%20o%20livro%20A%20História%20de%20Jó!" target="_blank">
+                    <button class="buy-btn">Comprar</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="content" id="kids">
+        <div class="section">
+            <h2>Histórias para Crianças</h2>
+            <div class="book">
+                <h3>Davi e Golias</h3>
+                <p>Uma história clássica de coragem e superação.</p>
+                <p class="price">Preço: R$ 4,99</p>
+                <a href="https://wa.me/5566981021166?text=Olá%20Micael,%20gostaria%20de%20comprar%20o%20livro%20de%20Davi%20e%20Golias!" target="_blank">
+                    <button class="buy-btn">Comprar</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Livraria Online. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
